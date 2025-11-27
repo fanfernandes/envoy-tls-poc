@@ -1,0 +1,19 @@
+# Elixir
+*.beam
+*.ez
+_build/
+deps/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
