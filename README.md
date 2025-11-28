@@ -32,11 +32,11 @@ This POC demonstrates that Envoy can handle TLS origination for HTTPoison/Elixir
 ```
 ┌─────────────────────┐      Plain HTTP      ┌──────────────────┐
 │  Elixir/HTTPoison   │─────────────────────>│   Envoy Proxy    │
-│  (test.exs)         │   localhost:10000     │  (Hardcoded)     │
-│                     │                       │                  │
-│  NO :ssl options    │                       │  - TLS origin    │
-└─────────────────────┘                       │  - Validate CA   │
-                                               └──────────────────┘
+│  (test.exs)         │   localhost:10000    │  (Hardcoded)     │
+│                     │                      │                  │
+│  NO :ssl options    │                      │  - TLS origin    │
+└─────────────────────┘                      │  - Validate CA   │
+                                             └──────────────────┘
                                                        │
                                                        │ HTTPS/TLS 1.2+
                                                        ▼
@@ -200,7 +200,7 @@ cluster.dynamic_forward_proxy_cluster.ssl.fail_verify_error: 0
 
 ## 🛑 Cleanup
 
-### Simple POC
+### Simple POC / Dynamic POC
 ```bash
 # Stop Envoy
 docker stop envoy-poc
@@ -208,14 +208,6 @@ docker stop envoy-poc
 # Remove container
 docker rm envoy-poc
 ```
-
-### Dynamic POC
-```bash
-# Same cleanup (uses same container name)
-docker stop envoy-poc
-docker rm envoy-poc
-```
-
 **Note**: Both POCs use the same container name (`envoy-poc`), so starting one stops the other automatically.
 
 ---
